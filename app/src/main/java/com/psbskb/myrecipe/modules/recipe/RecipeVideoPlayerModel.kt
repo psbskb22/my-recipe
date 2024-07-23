@@ -9,6 +9,7 @@ class RecipeVideoPlayerModel : ViewModel() {
     val isVideoPlaying: State<Boolean> = _isVideoPlaying
 
     init {
+        println("recipe_log_ reload")
         _isVideoPlaying.value = false;
     }
 

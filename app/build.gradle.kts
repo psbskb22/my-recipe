@@ -58,7 +58,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
 
     // Youtube Player
-    implementation(libs.core)
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
 
 
     implementation(libs.androidx.core.ktx)

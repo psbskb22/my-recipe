@@ -2,10 +2,13 @@ package com.psbskb.myrecipe.modules.categories
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -41,12 +44,26 @@ fun CategoriesView(navController: NavController) {
     }
 }
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun CategoriesWidget(navController: NavController) {
     val viewState by categoriesViewModel.recipeCategoriesState
     println("recipe_log $viewState")
     Column {
-        Text(text = "Categories", modifier = Modifier.padding(8.dp))
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(8.dp)
+        ) {
+            Image(
+                painter = rememberImagePainter("file:///android_asset/my_recipe.png"),
+                contentDescription = null,
+                modifier = Modifier
+                    .height(20.dp)
+                    .aspectRatio(1f)
+            )
+            Text(text = "My Recipe", modifier = Modifier.padding(8.dp))
+        }
         Box(
             modifier = Modifier
                 .fillMaxSize()

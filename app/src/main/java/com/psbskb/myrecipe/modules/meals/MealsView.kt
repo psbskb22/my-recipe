@@ -1,8 +1,10 @@
 package com.psbskb.myrecipe.modules.meals
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,12 +31,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.psbskb.myrecipe.data.models.Meal
 import com.psbskb.myrecipe.modules.categories.mealsViewModel
+import com.psbskb.myrecipe.modules.meals.handlers.onClickMeal
 import com.psbskb.myrecipe.modules.recipe.RecipeViewModel
+
 
 val recipeViewModel: RecipeViewModel = RecipeViewModel()
 
@@ -86,8 +91,7 @@ fun MealsList(navController: NavController, meals: List<Meal>) {
             Box(Modifier.padding(8.dp)) {
                 Button(
                     onClick = {
-                        recipeViewModel.fetchRecipe(id = meal.idMeal)
-                        navController.navigate("recipe")
+                        onClickMeal(navController, meal.idMeal)
                     },
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors()
@@ -116,8 +120,18 @@ fun MealsList(navController: NavController, meals: List<Meal>) {
                             Text(
                                 text = meal.strMeal, color = Color.Black,
                             )
-                            Button(onClick = { }) {
-                                Text(text = "Full Recipe")
+                            Box(Modifier.height(8.dp)) {}
+                            Button(
+                                onClick = { onClickMeal(navController, meal.idMeal) },
+                                contentPadding = PaddingValues(vertical = 0.dp, horizontal = 16.dp),
+                                modifier = Modifier
+                                    .padding(0.dp)
+                                    .height(25.dp)
+                            ) {
+                                Text(
+                                    text = "Full Recipe",
+                                    fontSize = 10.sp,
+                                )
                             }
                         }
                     }
